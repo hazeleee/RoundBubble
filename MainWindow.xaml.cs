@@ -28,6 +28,7 @@ namespace RoundBubble
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Popup.IsOpen = false;
             this.DragMove();
         }
 

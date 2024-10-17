@@ -24,13 +24,17 @@
         <TextBlock Grid.Column="1" Text="Hello, Walrus!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="Red"/>
         <Image Grid.Column="2" Source="/Resources/Oct_Icon_24_24.png" Margin="4"/>
 
-        <Popup x:Name="Popup" Width="100" Height="100" PlacementTarget="{Binding ElementName=WalrusWPF}" Placement="Top"  AllowsTransparency="True" StaysOpen="True">
-            <Grid Width="100">
+        <Popup x:Name="Popup" Width="200" Height="36" PlacementTarget="{Binding ElementName=WalrusWPF}" Placement="Top"  AllowsTransparency="True" StaysOpen="True" PopupAnimation="Fade">
+            <Grid Width="200">
                 
                 <StackPanel Margin="1" Orientation="Horizontal">
                     
                     <Image Source="/Resources/Close.png" Margin="4" Width="24" Height="24"/>
                     <Image Source="/Resources/Lock.png" Margin="4"  Width="24" Height="24"/>
+                    <Image Source="/Resources/number-1.png" Margin="4"  Width="24" Height="24"/>
+                    <Image Source="/Resources/number-3.png" Margin="4"  Width="24" Height="24"/>
+                    <Image Source="/Resources/number-4.png" Margin="4"  Width="24" Height="24"/>
+                    <Image Source="/Resources/number-5.png" Margin="4"  Width="24" Height="24"/>
                     
                 </StackPanel>
             </Grid>
