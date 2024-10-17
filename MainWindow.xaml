@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RoundBubble"
         mc:Ignorable="d"
-        Title="MainWindow" Height="50" Width="250"
-        WindowStyle="None" AllowsTransparency="True" Background="Transparent" Opacity="0.9" MouseLeftButtonDown="Window_MouseLeftButtonDown" >
+        Title="MainWindow" Height="50" Width="200"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent" Opacity="0.9" MouseLeftButtonDown="Window_MouseLeftButtonDown" 
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        >
     <Grid x:Name="WalrusWPF" MouseEnter="WalrusWPF_MouseEnter" MouseLeave="WalrusWPF_MouseLeave">
         
         <Grid.ColumnDefinitions>
@@ -21,20 +23,32 @@
             </Border.Effect>
         </Border>
         <Image Grid.Column="0" Source="/Resources/Sep_Icon_24_24.png" Margin="4"/>
-        <TextBlock Grid.Column="1" Text="Hello, Walrus!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="Red"/>
+        <TextBlock Grid.Column="1" Text="Hello,Walrus!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextTrimming="CharacterEllipsis" MaxWidth="100">
+            <TextBlock.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="92" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FFF94949"/>
+                    <GradientStop Color="#FF171717" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
         <Image Grid.Column="2" Source="/Resources/Oct_Icon_24_24.png" Margin="4"/>
 
-        <Popup x:Name="Popup" Width="200" Height="36" PlacementTarget="{Binding ElementName=WalrusWPF}" Placement="Top"  AllowsTransparency="True" StaysOpen="True" PopupAnimation="Fade">
-            <Grid Width="200">
-                
-                <StackPanel Margin="1" Orientation="Horizontal">
-                    
-                    <Image Source="/Resources/Close.png" Margin="4" Width="24" Height="24"/>
-                    <Image Source="/Resources/Lock.png" Margin="4"  Width="24" Height="24"/>
-                    <Image Source="/Resources/number-1.png" Margin="4"  Width="24" Height="24"/>
-                    <Image Source="/Resources/number-3.png" Margin="4"  Width="24" Height="24"/>
-                    <Image Source="/Resources/number-4.png" Margin="4"  Width="24" Height="24"/>
-                    <Image Source="/Resources/number-5.png" Margin="4"  Width="24" Height="24"/>
+        <Popup x:Name="Popup" Width="78" Height="36" PlacementTarget="{Binding ElementName=WalrusWPF}" Placement="Top"  AllowsTransparency="True" StaysOpen="True" PopupAnimation="Fade" HorizontalOffset="61">
+            <Grid>
+
+                <StackPanel Margin="0" Orientation="Horizontal">
+                    <Image Source="/Resources/Close.png" Margin="1" Width="24" Height="24" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                    <Image Source="/Resources/UnLock.png" Margin="1"  Width="24" Height="24" MouseLeftButtonDown="Image_MouseLeftButtonDown_Lock" />
+                    <Image Source="/Resources/UnPin.png" Margin="1"  Width="24" Height="24" MouseLeftButtonDown="Image_MouseLeftButtonDown_Pin" />
+                   
                     
                 </StackPanel>
             </Grid>
