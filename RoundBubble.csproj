@@ -56,7 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel.cs" />
+    <Compile Include="KeyboardHook.cs" />
+    <Compile Include="KeyboardInfo.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -128,6 +129,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\UnPin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\NoListen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Listen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,21 +9,28 @@
         WindowStyle="None" AllowsTransparency="True" Background="Transparent" Opacity="0.9" MouseLeftButtonDown="Window_MouseLeftButtonDown" 
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         >
+    <Window.Resources>
+        <Storyboard x:Key="FadeOutAndMoveUpAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)" From="0" To="-10" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Window.Resources>
     <Grid x:Name="WalrusWPF" MouseEnter="WalrusWPF_MouseEnter" MouseLeave="WalrusWPF_MouseLeave">
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="0.3*" />
         </Grid.ColumnDefinitions>
-        
+
         <Border Grid.Column="0" Grid.ColumnSpan="3" Background="LightGray" Opacity="0.95" CornerRadius="25" BorderThickness="1">
             <Border.Effect>
                 <BlurEffect Radius="2"/>
             </Border.Effect>
         </Border>
         <Image Grid.Column="0" Source="/Resources/Sep_Icon_24_24.png" Margin="4"/>
-        <TextBlock Grid.Column="1" Text="Hello,Walrus!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextTrimming="CharacterEllipsis" MaxWidth="100">
+        <TextBlock Grid.Column="1" x:Name="ListenText" Text="{Binding _keyboardInfo.WalrusKey}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextTrimming="CharacterEllipsis" MaxWidth="100">
+             <!--ContextMenuOpening="TextBlock_ContextMenuOpening"-->
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <LinearGradientBrush.RelativeTransform>
@@ -38,18 +45,26 @@
                     <GradientStop Color="#FF171717" Offset="1"/>
                 </LinearGradientBrush>
             </TextBlock.Foreground>
+            <!--<TextBlock.ContextMenu>
+                <ContextMenu>
+                    <MenuItem IsCheckable="True" Header="Listen" Checked="MenuItem_Checked" Unchecked="MenuItem_Unchecked"/>
+                </ContextMenu>
+            </TextBlock.ContextMenu>-->
+            <TextBlock.RenderTransform>
+                <TranslateTransform/>
+            </TextBlock.RenderTransform>
         </TextBlock>
-        <Image Grid.Column="2" Source="/Resources/Oct_Icon_24_24.png" Margin="4"/>
+        <Image Grid.Column="2" Source="/Resources/Oct_Icon_24_24.png" Margin="4" MouseLeftButtonDown="Image_MouseLeftButtonDown_1"/>
 
-        <Popup x:Name="Popup" Width="78" Height="36" PlacementTarget="{Binding ElementName=WalrusWPF}" Placement="Top"  AllowsTransparency="True" StaysOpen="True" PopupAnimation="Fade" HorizontalOffset="61">
+        <Popup x:Name="Popup" Width="110" Height="36" PlacementTarget="{Binding ElementName=WalrusWPF}" Placement="Top"  AllowsTransparency="True" StaysOpen="True" PopupAnimation="Fade" HorizontalOffset="50">
             <Grid>
 
                 <StackPanel Margin="0" Orientation="Horizontal">
-                    <Image Source="/Resources/Close.png" Margin="1" Width="24" Height="24" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                    <Image Source="/Resources/UnLock.png" Margin="1"  Width="24" Height="24" MouseLeftButtonDown="Image_MouseLeftButtonDown_Lock" />
-                    <Image Source="/Resources/UnPin.png" Margin="1"  Width="24" Height="24" MouseLeftButtonDown="Image_MouseLeftButtonDown_Pin" />
-                   
-                    
+                    <Image Source="/Resources/Close.png" Margin="2" Width="24" Height="24" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                    <Image Source="/Resources/UnLock.png" Margin="2"  Width="24" Height="24" MouseLeftButtonDown="Image_MouseLeftButtonDown_Lock" />
+                    <Image Source="/Resources/UnPin.png" Margin="2"  Width="24" Height="24" MouseLeftButtonDown="Image_MouseLeftButtonDown_Pin" />
+                    <Image Source="/Resources/NoListen.png" Margin="2"  Width="24" Height="24" MouseLeftButtonDown="Image_MouseLeftButtonDown_ListenKey"  />
+
                 </StackPanel>
             </Grid>
         </Popup>

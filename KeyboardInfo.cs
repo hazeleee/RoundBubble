@@ -6,30 +6,31 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace RoundBubble
 {
-    public class ViewModel:INotifyPropertyChanged
+    public class KeyboardInfo : INotifyPropertyChanged
     {
-        private BitmapImage _lockImage;
-        public BitmapImage LockImage
-        { 
-            get 
-            { 
-                return _lockImage; 
-            }
+        private string _walrusKey;
+
+        public string WalrusKey
+        {
+            get { return _walrusKey; }
             set
             {
-                _lockImage= value;
-                OnPropertyChanged("LockImage");
+                _walrusKey = value;
+                OnPropertyChanged("WalrusKey");
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-           
+
     }
 }
